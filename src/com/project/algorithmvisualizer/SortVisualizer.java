@@ -41,8 +41,8 @@ public class SortVisualizer extends JPanel{
         arr[index1]=arr[index2];
         arr[index2]=temp;
 
-        barColor[index1]=120;
-        barColor[index2]=120;
+        barColor[index1]=100;
+        barColor[index2]=100;
 
         finaliseUpdate(millisecondDelay,isChanged);
     }
@@ -64,15 +64,20 @@ public class SortVisualizer extends JPanel{
             int barheight=arr[i]*2;
             int xbegin =((BAR_WIDTH)*(i));
             int ybegin= Main.WIN_HEIGHT-barheight;
+            /**
+             * If the barColor is recently changed, it will turn green. for every iteration, it will decrease by 5
+             * then, after barcolor is below 190, it will turn red, but it will still decrease by 5 until it became zero and
+             * turn to white
+             */
             int val=barColor[i]*2;
-            if(val>220){
+            if(val>190){
                 graphics.setColor(new Color(255-val,255,255-val));
             }else{
                 graphics.setColor(new Color(255,255-val,255-val));
             }
             graphics.fillRect(xbegin,ybegin,BAR_WIDTH,barheight);
             if(barColor[i]>0){
-                barColor[i]-=10;
+                barColor[i]-=5;
             }
         }
     }
