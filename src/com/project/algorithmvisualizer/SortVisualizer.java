@@ -9,8 +9,9 @@ public class SortVisualizer extends JPanel{
 
     private int arrayChanges; //counts the number of changes in the array
 
-    private final int BAR_WIDTH=5;
+    private final int BAR_WIDTH=1;
     private final int BAR_NUMS = Main.WIN_WIDTH/BAR_WIDTH;
+    private final double MAX_HEIGHT=Main.WIN_HEIGHT*0.8;
 
     private int[] arr;
     private int[] barColor;
@@ -58,7 +59,7 @@ public class SortVisualizer extends JPanel{
         Random rng = new Random();
         for (int i = 0; i < arraySize(); i++) {
             int swapWithIndex = rng.nextInt(arraySize() - 1);
-            swap(i, swapWithIndex, 20,false);
+            swap(i, swapWithIndex, 2,false);
         }
 
     }
@@ -71,7 +72,7 @@ public class SortVisualizer extends JPanel{
         super.paintComponent(graphics);
         for(int i=0;i<BAR_NUMS;i++){
 
-            int barheight=arr[i]*2;
+            int barheight=(int)Math.ceil(arr[i]*(MAX_HEIGHT/BAR_NUMS));
             int xbegin =((BAR_WIDTH)*(i));
             int ybegin= Main.WIN_HEIGHT-barheight;
             /**
