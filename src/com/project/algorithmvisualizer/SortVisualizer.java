@@ -25,6 +25,7 @@ public class SortVisualizer extends JPanel{
         }
     }
 
+    //-------------------------------------BAR OPERATIONS-----------------------------------------
     private void finaliseUpdate(long millisecondDelay, boolean isChanged) {
         repaint();
         try {
@@ -46,15 +47,24 @@ public class SortVisualizer extends JPanel{
 
         finaliseUpdate(millisecondDelay,isChanged);
     }
+    public void updateSingle(int index, int value, long millisecondDelay, boolean isChanged){
+        arr[index]=value;
+
+        barColor[index]=100;
+
+        finaliseUpdate(millisecondDelay, isChanged);
+    }
     public void shuffle() {
         Random rng = new Random();
         for (int i = 0; i < arraySize(); i++) {
             int swapWithIndex = rng.nextInt(arraySize() - 1);
-            swap(i, swapWithIndex, 2,false);
+            swap(i, swapWithIndex, 20,false);
         }
 
     }
+    //---------------------------------------------END---------------------------------------------
 
+    //--------------------------------------------PAINT AND OVERRIDES---------------------------------------
     @Override
     public void paintComponent(Graphics g){
         Graphics2D graphics = (Graphics2D)g;
@@ -81,10 +91,16 @@ public class SortVisualizer extends JPanel{
             }
         }
     }
+
+
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(Main.WIN_WIDTH,Main.WIN_HEIGHT);
     }
+
+    //------------------------------------------------END-------------------------------------------------
+
+    //------------------------------------------UTILITIES----------------------------------------
     public void resetColors() {
         for (int i = 0; i < BAR_NUMS; i++) {
             barColor[i] = 0;
@@ -98,11 +114,11 @@ public class SortVisualizer extends JPanel{
     public int getValue(int index) {
         return arr[index];
     }
-    /**
-     * Gets the max value of the array or Integer.MIN_VALUE if there isn't one.
-     * @return the max value or Integer.MIN_VALUE.
-     */
-    public int getMaxValue() {
-        return Arrays.stream(arr).max().orElse(Integer.MIN_VALUE);
+
+    public void highlightArrays(long millisecondDelay){
+        for(int i=0;i<BAR_NUMS;i++){
+            updateSingle(i,getValue(i),millisecondDelay,false);
+        }
     }
+
 }

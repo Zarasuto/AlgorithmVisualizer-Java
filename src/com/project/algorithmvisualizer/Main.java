@@ -21,8 +21,12 @@ public class Main {
         window.getContentPane().add(sortVisualizer);
         window.pack();
         window.setVisible(true);
+
+        //operations
         sortVisualizer.shuffle();
         sortVisualizer.resetColors();
+        //highlightArrays(20);
+        //sortVisualizer.resetColors();
     }
     public static void main(String[] args)  {
         Main main = new Main();
