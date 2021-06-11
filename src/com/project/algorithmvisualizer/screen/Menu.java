@@ -8,6 +8,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Menu extends JPanel {
+    public static final int MENU_WIDTH= 227;
+    public static final int MENU_HEIGHT= 54;
+
     private SortVisualizer sortVisualizer;
     private long algorithmDelay=0;
     private JSlider ArraySizePicker;
@@ -25,6 +28,7 @@ public class Menu extends JPanel {
         setLayout(new FlowLayout(FlowLayout.LEFT));
         setBackground(Color.black);
         menu.setBackground(Color.black);
+        menu.setSize(MENU_WIDTH,MENU_HEIGHT);
         ArraySizePicker.setBackground(Color.black);
         DelaySizePicker.setBackground(Color.black);
         populateComboBox();

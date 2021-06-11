@@ -2,6 +2,8 @@ package com.project.algorithmvisualizer;
 
 import java.awt.*;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import javax.swing.JPanel;
 
@@ -11,6 +13,8 @@ import static com.project.algorithmvisualizer.Main.WIN_WIDTH;
 public class SortVisualizer extends JPanel{
 
     private int comparisons=0; //counts the number of changes in the array
+    private String algorithmName="";
+    private long algorithm_delay=0;
 
     private final int BAR_WIDTH=1;
     private final int BAR_NUMS = WIN_WIDTH/BAR_WIDTH;
@@ -73,6 +77,20 @@ public class SortVisualizer extends JPanel{
     public void paintComponent(Graphics g){
         Graphics2D graphics = (Graphics2D)g;
         super.paintComponent(graphics);
+
+        Map<RenderingHints.Key, Object> renderingHints = new HashMap<>();
+        renderingHints.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        graphics.addRenderingHints(renderingHints);
+        graphics.setColor(Color.WHITE);
+        graphics.setFont(new Font("Monospaced", Font.BOLD, 20));
+        graphics.drawString(" Current algorithm: " + algorithmName, 10, 30);
+        graphics.drawString("Current step delay: " + algorithm_delay + "ms", 10, 50);
+        graphics.drawString("        Array Size: " + BAR_NUMS, 10, 70);
+        graphics.drawString("       Comparisons: " + comparisons, 10, 90);
+
+        drawBars(graphics);
+    }
+    private void drawBars(Graphics2D graphics){
         for(int i=0;i<BAR_NUMS;i++){
 
             int barheight=(int)Math.ceil(arr[i]*(MAX_HEIGHT/BAR_NUMS));
@@ -135,7 +153,9 @@ public class SortVisualizer extends JPanel{
         }
         return max;
     }
-    public int getArrayChanges(){
-        return comparisons;
+
+    @Override
+    public void setName(String algorithmName) {
+        this.algorithmName = algorithmName;
     }
 }

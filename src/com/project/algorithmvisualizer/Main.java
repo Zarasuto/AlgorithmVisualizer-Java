@@ -20,6 +20,7 @@ public class Main {
         //NOT YET OPTIMIZED
         window = new JFrame("Algorithm Visualizer");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setResizable(false);
         menu = new MainScreen();
         window.getContentPane().add(menu);
         window.pack();

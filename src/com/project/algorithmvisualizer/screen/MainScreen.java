@@ -27,6 +27,6 @@ public class MainScreen extends JPanel {
     }
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(WIN_WIDTH, WIN_HEIGHT);
+        return new Dimension(WIN_WIDTH, WIN_HEIGHT+menu.MENU_HEIGHT);
     }
 }
