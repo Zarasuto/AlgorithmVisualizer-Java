@@ -31,6 +31,8 @@ public class Menu extends JPanel {
         ArraySizePicker.setBackground(Color.black);
         DelaySizePicker.setBackground(Color.black);
 
+        DelaySizePicker.setValue((int) sortAlgorithms.DEFAULT_DELAY);
+
         populateComboBox();
         add(menu);
     }

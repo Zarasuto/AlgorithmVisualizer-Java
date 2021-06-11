@@ -51,7 +51,11 @@ public class MainScreen extends JPanel {
         menu.getArraySizePicker().addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                repaint();
+                if(menu.getStartButton().isEnabled()){
+                    sortVisualizer.setBarNums(menu.getArraySizePicker().getValue());
+                    sortVisualizer.setBarArray();
+                    repaint();
+                }
             }
         });
         menu.getDelaySizePicker().addChangeListener(new ChangeListener() {
