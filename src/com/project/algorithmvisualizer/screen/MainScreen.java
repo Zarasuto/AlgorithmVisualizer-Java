@@ -87,7 +87,7 @@ public class MainScreen extends JPanel {
                 waitAndShuffle();
 
                 algorithm.runSort(sortVisualizer);
-                sortVisualizer.highlightArrays(5);
+                sortVisualizer.highlightArrays(2);
                 sortVisualizer.resetColors();
 
                 menu.getStartButton().setEnabled(true);
