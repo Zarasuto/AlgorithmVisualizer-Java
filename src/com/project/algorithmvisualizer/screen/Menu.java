@@ -5,14 +5,11 @@ import com.project.algorithmvisualizer.sort_algorithms.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Menu extends JPanel {
     public static final int MENU_WIDTH= 227;
     public static final int MENU_HEIGHT= 54;
 
-    private SortVisualizer sortVisualizer;
-    private long algorithmDelay=0;
     private JSlider ArraySizePicker;
     private JSlider DelaySizePicker;
     private JComboBox<sortAlgorithms> AlgorithmPicker;
@@ -24,13 +21,16 @@ public class Menu extends JPanel {
     }
 
     private void setupGUI(){
-        sortVisualizer= new SortVisualizer();
+        SortVisualizer sortVisualizer = new SortVisualizer();
         setLayout(new FlowLayout(FlowLayout.LEFT));
+        menu.setSize(MENU_WIDTH,MENU_HEIGHT);
+
+        //background colors
         setBackground(Color.black);
         menu.setBackground(Color.black);
-        menu.setSize(MENU_WIDTH,MENU_HEIGHT);
         ArraySizePicker.setBackground(Color.black);
         DelaySizePicker.setBackground(Color.black);
+
         populateComboBox();
         add(menu);
     }
@@ -38,5 +38,21 @@ public class Menu extends JPanel {
         AlgorithmPicker.addItem(new BubbleSort());
         AlgorithmPicker.addItem(new MergeSort());
         AlgorithmPicker.addItem(new SelectionSort());
+    }
+
+    public JSlider getArraySizePicker() {
+        return ArraySizePicker;
+    }
+
+    public JSlider getDelaySizePicker() {
+        return DelaySizePicker;
+    }
+
+    public JComboBox<sortAlgorithms> getAlgorithmPicker() {
+        return AlgorithmPicker;
+    }
+
+    public JButton getStartButton() {
+        return startButton;
     }
 }

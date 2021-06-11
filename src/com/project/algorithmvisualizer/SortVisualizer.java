@@ -16,8 +16,8 @@ public class SortVisualizer extends JPanel{
     private String algorithmName="";
     private long algorithm_delay=0;
 
-    private final int BAR_WIDTH=1;
-    private final int BAR_NUMS = WIN_WIDTH/BAR_WIDTH;
+    private static final int BAR_WIDTH=5;
+    private static final int BAR_NUMS = WIN_WIDTH/BAR_WIDTH;
     private final double MAX_HEIGHT=WIN_HEIGHT*0.8;
 
     private static int[] arr;
@@ -66,7 +66,7 @@ public class SortVisualizer extends JPanel{
         Random rng = new Random();
         for (int i = 0; i < arraySize(); i++) {
             int swapWithIndex = rng.nextInt(arraySize() - 1);
-            swap(i, swapWithIndex, 5,false);
+            swap(i, swapWithIndex, 3,false);
         }
 
     }
@@ -85,8 +85,7 @@ public class SortVisualizer extends JPanel{
         graphics.setFont(new Font("Monospaced", Font.BOLD, 20));
         graphics.drawString(" Current algorithm: " + algorithmName, 10, 30);
         graphics.drawString("Current step delay: " + algorithm_delay + "ms", 10, 50);
-        graphics.drawString("        Array Size: " + BAR_NUMS, 10, 70);
-        graphics.drawString("       Comparisons: " + comparisons, 10, 90);
+        graphics.drawString("       Comparisons: " + comparisons, 10, 70);
 
         drawBars(graphics);
     }
@@ -144,18 +143,9 @@ public class SortVisualizer extends JPanel{
         }
     }
 
-    public int getArrayMaxValue(){
-        int max=0;
-        for(int i=0;i<arraySize();i++){
-            if(getValue(i)>max){
-                max=getValue(i);
-            }
-        }
-        return max;
-    }
-
     @Override
     public void setName(String algorithmName) {
         this.algorithmName = algorithmName;
     }
+    public void setDelay(long algorithm_delay){ this.algorithm_delay=algorithm_delay;}
 }

@@ -3,7 +3,7 @@ package com.project.algorithmvisualizer.sort_algorithms;
 import com.project.algorithmvisualizer.SortVisualizer;
 
 public class SelectionSort implements sortAlgorithms{
-    private static final long DEFAULT_DELAY=2;
+    public static final long DEFAULT_DELAY=2;
 
     private long delay=DEFAULT_DELAY;
 
