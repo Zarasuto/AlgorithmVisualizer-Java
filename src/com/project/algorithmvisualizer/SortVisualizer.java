@@ -7,13 +7,13 @@ import javax.swing.JPanel;
 
 public class SortVisualizer extends JPanel{
 
-    private int arrayChanges; //counts the number of changes in the array
+    private int comparisons=0; //counts the number of changes in the array
 
     private final int BAR_WIDTH=1;
     private final int BAR_NUMS = Main.WIN_WIDTH/BAR_WIDTH;
     private final double MAX_HEIGHT=Main.WIN_HEIGHT*0.8;
 
-    private int[] arr;
+    private static int[] arr;
     private int[] barColor;
 
     public SortVisualizer(){
@@ -27,39 +27,39 @@ public class SortVisualizer extends JPanel{
     }
 
     //-------------------------------------BAR OPERATIONS-----------------------------------------
-    private void finaliseUpdate(long millisecondDelay, boolean isChanged) {
+    private void finaliseUpdate(long millisecondDelay, boolean isStep) {
         repaint();
         try {
             Thread.sleep(millisecondDelay);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        if (isChanged)
-            arrayChanges++;
+        if (isStep)
+            comparisons++;
     }
 
-    public void swap(int index1, int index2,long millisecondDelay, boolean isChanged){
+    public void swap(int index1, int index2,long millisecondDelay, boolean isStep){
         int temp = arr[index1];
         arr[index1]=arr[index2];
         arr[index2]=temp;
 
-        barColor[index1]=100;
-        barColor[index2]=100;
+        barColor[index1]=-50;
+        barColor[index2]=-50;
 
-        finaliseUpdate(millisecondDelay,isChanged);
+        finaliseUpdate(millisecondDelay,isStep);
     }
-    public void updateSingle(int index, int value, long millisecondDelay, boolean isChanged){
+    public void updateSingle(int index, int value, long millisecondDelay, boolean isStep){
         arr[index]=value;
 
         barColor[index]=100;
 
-        finaliseUpdate(millisecondDelay, isChanged);
+        finaliseUpdate(millisecondDelay, isStep);
     }
     public void shuffle() {
         Random rng = new Random();
         for (int i = 0; i < arraySize(); i++) {
             int swapWithIndex = rng.nextInt(arraySize() - 1);
-            swap(i, swapWithIndex, 2,false);
+            swap(i, swapWithIndex, 5,false);
         }
 
     }
@@ -80,16 +80,17 @@ public class SortVisualizer extends JPanel{
              * then, after barcolor is below 190, it will turn red, but it will still decrease by 5 until it became zero and
              * turn to white
              */
-            int val=barColor[i]*2;
-            if(val>190){
-                graphics.setColor(new Color(255-val,255,255-val));
-            }else{
+            if(barColor[i]>0){
+                int val=barColor[i]*2;
                 graphics.setColor(new Color(255,255-val,255-val));
+                barColor[i]-=5;
+            }else if(barColor[i]<0){
+                graphics.setColor(new Color(255,0,0));
+                barColor[i]+=5;
+            }else{
+                graphics.setColor(new Color(255,255,255));
             }
             graphics.fillRect(xbegin,ybegin,BAR_WIDTH,barheight);
-            if(barColor[i]>0){
-                barColor[i]-=5;
-            }
         }
     }
 
@@ -118,8 +119,20 @@ public class SortVisualizer extends JPanel{
 
     public void highlightArrays(long millisecondDelay){
         for(int i=0;i<BAR_NUMS;i++){
-            updateSingle(i,getValue(i),millisecondDelay,false);
+            updateSingle(i, getValue(i), 5, false);
         }
     }
 
+    public int getArrayMaxValue(){
+        int max=0;
+        for(int i=0;i<arraySize();i++){
+            if(getValue(i)>max){
+                max=getValue(i);
+            }
+        }
+        return max;
+    }
+    public int getArrayChanges(){
+        return comparisons;
+    }
 }

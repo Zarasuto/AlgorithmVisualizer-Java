@@ -1,13 +1,20 @@
 package com.project.algorithmvisualizer;
 
+import com.project.algorithmvisualizer.sort_algorithms.BubbleSort;
+import com.project.algorithmvisualizer.sort_algorithms.MergeSort;
+import com.project.algorithmvisualizer.sort_algorithms.SelectionSort;
+import com.project.algorithmvisualizer.sort_algorithms.sortAlgorithms;
+
 import javax.swing.JFrame;
-import javax.swing.JComponent;
-import java.awt.*;
+import java.util.ArrayList;
+
 
 public class Main {
     public static final int WIN_WIDTH= 1280;
     public static final int WIN_HEIGHT=720;
+
     private SortVisualizer sortVisualizer;
+    ArrayList<sortAlgorithms> algorithms;
 
     private JFrame window;
 
@@ -23,14 +30,33 @@ public class Main {
         window.setVisible(true);
 
         //operations
-        sortVisualizer.shuffle();
+        waitAndShuffle();
+        new MergeSort().runSort(sortVisualizer);
+        sortVisualizer.highlightArrays(20);
         sortVisualizer.resetColors();
-        //highlightArrays(20);
-        //sortVisualizer.resetColors();
+
+        /*new SelectionSort().runSort(sortVisualizer);
+        sortVisualizer.highlightArrays(30);
+        sortVisualizer.resetColors();
+        waitAndShuffle();
+        new BubbleSort().runSort(sortVisualizer);
+        sortVisualizer.highlightArrays(10);
+        sortVisualizer.resetColors();*/
+
     }
     public static void main(String[] args)  {
         Main main = new Main();
         try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    private void waitAndShuffle(){
+        try {
+            Thread.sleep(2000);
+            sortVisualizer.shuffle();
+            sortVisualizer.resetColors();
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
