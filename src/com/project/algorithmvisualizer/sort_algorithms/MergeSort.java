@@ -4,6 +4,15 @@ import com.project.algorithmvisualizer.SortVisualizer;
 
 
 public class MergeSort implements sortAlgorithms{
+    private static final long DEFAULT_DELAY=2;
+
+    private long delay=DEFAULT_DELAY;
+
+    @Override
+    public void setDelay(long millisecond) {
+        delay=millisecond;
+    }
+
     @Override
 
     public void runSort(SortVisualizer array) {
@@ -41,25 +50,29 @@ public class MergeSort implements sortAlgorithms{
 
         while(i<leftsize && j<rightsize){
             if(left_temp_array[i]<=right_temp_array[j]){
-                array.updateSingle(k,left_temp_array[i],2,true);
+                array.updateSingle(k,left_temp_array[i],delay,true);
                 i++;
             }else{
-                array.updateSingle(k,right_temp_array[j],2,true);
+                array.updateSingle(k,right_temp_array[j],delay,true);
                 j++;
             }
             k++;
         }
 
         while(i<leftsize){
-            array.updateSingle(k,left_temp_array[i],2,true);
+            array.updateSingle(k,left_temp_array[i],delay,true);
             i++;
             k++;
         }
 
         while(j<rightsize){
-            array.updateSingle(k,right_temp_array[j],2,true);
+            array.updateSingle(k,right_temp_array[j],delay,true);
             j++;
             k++;
         }
+    }
+    @Override
+    public String toString(){
+        return "Merge Sort";
     }
 }

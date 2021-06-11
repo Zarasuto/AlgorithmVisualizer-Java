@@ -4,5 +4,7 @@ import com.project.algorithmvisualizer.SortVisualizer;
 
 public interface sortAlgorithms {
 
+
+    public void setDelay(long millisecond);
     public void runSort(SortVisualizer array);
 }

@@ -5,13 +5,16 @@ import java.util.Arrays;
 import java.util.Random;
 import javax.swing.JPanel;
 
+import static com.project.algorithmvisualizer.Main.WIN_HEIGHT;
+import static com.project.algorithmvisualizer.Main.WIN_WIDTH;
+
 public class SortVisualizer extends JPanel{
 
     private int comparisons=0; //counts the number of changes in the array
 
     private final int BAR_WIDTH=1;
-    private final int BAR_NUMS = Main.WIN_WIDTH/BAR_WIDTH;
-    private final double MAX_HEIGHT=Main.WIN_HEIGHT*0.8;
+    private final int BAR_NUMS = WIN_WIDTH/BAR_WIDTH;
+    private final double MAX_HEIGHT=WIN_HEIGHT*0.8;
 
     private static int[] arr;
     private int[] barColor;
@@ -74,7 +77,7 @@ public class SortVisualizer extends JPanel{
 
             int barheight=(int)Math.ceil(arr[i]*(MAX_HEIGHT/BAR_NUMS));
             int xbegin =((BAR_WIDTH)*(i));
-            int ybegin= Main.WIN_HEIGHT-barheight;
+            int ybegin= WIN_HEIGHT-barheight;
             /**
              * If the barColor is recently changed, it will turn green. for every iteration, it will decrease by 5
              * then, after barcolor is below 190, it will turn red, but it will still decrease by 5 until it became zero and
@@ -97,7 +100,7 @@ public class SortVisualizer extends JPanel{
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(Main.WIN_WIDTH,Main.WIN_HEIGHT);
+        return new Dimension(WIN_WIDTH, WIN_HEIGHT);
     }
 
     //------------------------------------------------END-------------------------------------------------

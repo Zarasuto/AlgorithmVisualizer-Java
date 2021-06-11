@@ -1,8 +1,6 @@
 package com.project.algorithmvisualizer;
 
-import com.project.algorithmvisualizer.sort_algorithms.BubbleSort;
-import com.project.algorithmvisualizer.sort_algorithms.MergeSort;
-import com.project.algorithmvisualizer.sort_algorithms.SelectionSort;
+import com.project.algorithmvisualizer.screen.MainScreen;
 import com.project.algorithmvisualizer.sort_algorithms.sortAlgorithms;
 
 import javax.swing.JFrame;
@@ -14,26 +12,24 @@ public class Main {
     public static final int WIN_HEIGHT=720;
 
     private SortVisualizer sortVisualizer;
-    ArrayList<sortAlgorithms> algorithms;
+    private MainScreen menu;
 
     private JFrame window;
 
     public Main(){
-
         //NOT YET OPTIMIZED
         window = new JFrame("Algorithm Visualizer");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //window.setResizable(false);
-        sortVisualizer = new SortVisualizer();
-        window.getContentPane().add(sortVisualizer);
+        menu = new MainScreen();
+        window.getContentPane().add(menu);
         window.pack();
         window.setVisible(true);
 
         //operations
-        waitAndShuffle();
+        /*waitAndShuffle();
         new MergeSort().runSort(sortVisualizer);
         sortVisualizer.highlightArrays(20);
-        sortVisualizer.resetColors();
+        sortVisualizer.resetColors();*/
 
         /*new SelectionSort().runSort(sortVisualizer);
         sortVisualizer.highlightArrays(30);
