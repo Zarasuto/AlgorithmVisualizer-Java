@@ -18,7 +18,6 @@ public class Main {
     private JFrame window;
 
     public Main(){
-        //NOT YET OPTIMIZED
         window = new JFrame("Algorithm Visualizer");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
@@ -27,11 +26,11 @@ public class Main {
 
     public void start(){
         menu = new MainScreen();
-        //sortAlgorithm = new SortAlgorithmScreen();
         window.setContentPane(menu);
         window.validate();
         window.pack();
     }
+
 
     public static void main(String[] args)  {
         Main main = new Main();

@@ -15,6 +15,7 @@ public class Menu extends JPanel {
     private JComboBox<sortAlgorithms> AlgorithmPicker;
     private JButton startButton;
     private JPanel menu;
+    private JButton BACKButton;
 
     public Menu(){
         setupGUI();
@@ -56,5 +57,9 @@ public class Menu extends JPanel {
 
     public JButton getStartButton() {
         return startButton;
+    }
+
+    public JButton getBACKButton() {
+        return BACKButton;
     }
 }

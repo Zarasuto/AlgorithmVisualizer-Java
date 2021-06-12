@@ -1,5 +1,6 @@
 package com.project.algorithmvisualizer.screen;
 
+import com.project.algorithmvisualizer.Main;
 import com.project.algorithmvisualizer.SortVisualizer;
 import com.project.algorithmvisualizer.sort_algorithms.sortAlgorithms;
 
@@ -13,12 +14,13 @@ import java.awt.event.ActionListener;
 import static com.project.algorithmvisualizer.Main.WIN_HEIGHT;
 import static com.project.algorithmvisualizer.Main.WIN_WIDTH;
 
-public class SortAlgorithmScreen extends JPanel implements Screen{
+public class SortAlgorithmScreen extends Screen{
 
     private Menu menu;
     private SortVisualizer sortVisualizer;
 
-    public SortAlgorithmScreen(){
+    public SortAlgorithmScreen(MainScreen app){
+        super(app);
         setupGUI();
     }
 
@@ -29,7 +31,6 @@ public class SortAlgorithmScreen extends JPanel implements Screen{
         add(sortVisualizer,BorderLayout.CENTER);
         add(menu,BorderLayout.PAGE_START);
         addListener();
-
     }
 
     public void addListener(){
@@ -56,6 +57,13 @@ public class SortAlgorithmScreen extends JPanel implements Screen{
             @Override
             public void actionPerformed(ActionEvent e) {
                 startOperation();
+            }
+        });
+
+        menu.getBACKButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                backToMenu();
             }
         });
     }
@@ -104,6 +112,11 @@ public class SortAlgorithmScreen extends JPanel implements Screen{
 
     @Override
     public void backToMenu() {
+        app.switchToTitle();
+    }
 
+    @Override
+    public String getScreenName() {
+        return "Sorting Screen";
     }
 }
