@@ -1,6 +1,7 @@
 package com.project.algorithmvisualizer;
 
 import com.project.algorithmvisualizer.screen.MainScreen;
+import com.project.algorithmvisualizer.screen.SortAlgorithmScreen;
 import com.project.algorithmvisualizer.sort_algorithms.MergeSort;
 import com.project.algorithmvisualizer.sort_algorithms.sortAlgorithms;
 
@@ -13,7 +14,7 @@ public class Main {
     public static final int WIN_HEIGHT=720;
 
     private MainScreen menu;
-
+    private SortAlgorithmScreen sortAlgorithm;
     private JFrame window;
 
     public Main(){
@@ -26,6 +27,7 @@ public class Main {
 
     public void start(){
         menu = new MainScreen();
+        //sortAlgorithm = new SortAlgorithmScreen();
         window.setContentPane(menu);
         window.validate();
         window.pack();

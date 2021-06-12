@@ -60,13 +60,13 @@ public class MergeSort implements sortAlgorithms{
         }
 
         while(i<leftsize){
-            array.updateSingle(k,left_temp_array[i],delay,true);
+            array.updateSingle(k,left_temp_array[i],delay,false);
             i++;
             k++;
         }
 
         while(j<rightsize){
-            array.updateSingle(k,right_temp_array[j],delay,true);
+            array.updateSingle(k,right_temp_array[j],delay,false);
             j++;
             k++;
         }
