@@ -69,12 +69,13 @@ public class SortVisualizer extends JPanel{
         finaliseUpdate(millisecondDelay, isStep);
     }
     public void shuffle() {
+        comparisons=0;
         Random rng = new Random();
         for (int i = 0; i < arraySize(); i++) {
             int swapWithIndex = rng.nextInt(arraySize() - 1);
             swap(i, swapWithIndex, 3,false);
         }
-
+        comparisons=0;
     }
     //---------------------------------------------END---------------------------------------------
 
