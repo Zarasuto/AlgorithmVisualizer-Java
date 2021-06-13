@@ -6,7 +6,9 @@ import com.project.algorithmvisualizer.data_structures.Stack;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import static com.project.algorithmvisualizer.Main.WIN_HEIGHT;
 import static com.project.algorithmvisualizer.Main.WIN_WIDTH;
@@ -16,6 +18,7 @@ public class StackVisualizer extends JPanel {
     private Stack stack;
 
     public StackVisualizer(){
+        setBackground(Color.gray);
         stack = new Stack();
     }
     public void paintComponent(Graphics g){
@@ -24,18 +27,24 @@ public class StackVisualizer extends JPanel {
         int beginx=100;
         int beginy=100;
 
+        drawTitle(graphics);
+
         Iterator<NodeObject> iterator = stack.iterator();
         NodeObject prev_node;
+
         try{
             prev_node = stack.peek();
         }catch(NullPointerException exception){
             prev_node = null;
         }
+
         while(iterator.hasNext() && WIN_HEIGHT-beginy>100){
             graphics.setFont(new Font("Monospaced", Font.BOLD, 15));
             graphics.drawString("PEEK",135,170);
+
             NodeObject node = iterator.next();
             node.setGraphics(graphics);
+
             if(prev_node.equals(node)){
                 node.drawNode(beginx,beginy,NodeObject.NODE_WIDTH,NodeObject.NODE_HEIGHT);
             }else{
@@ -49,6 +58,7 @@ public class StackVisualizer extends JPanel {
                 beginx=100;
                 beginy+=100;
             }
+
         }
         try{
             graphics.drawString("REAR",prev_node.getPOS_X()+35,prev_node.getPOS_Y()+70);
@@ -57,6 +67,14 @@ public class StackVisualizer extends JPanel {
         }
     }
 
+    private void drawTitle(Graphics2D graphics){
+        Map<RenderingHints.Key, Object> renderingHints = new HashMap<>();
+        renderingHints.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        graphics.addRenderingHints(renderingHints);
+        graphics.setColor(Color.WHITE);
+        graphics.setFont(new Font("Monospaced", Font.BOLD, 40));
+        graphics.drawString("Stack", WIN_WIDTH/2-50, 30);
+    }
     void drawArrow(Graphics g1, int x1, int y1, int x2, int y2) {
         Graphics2D g = (Graphics2D) g1.create();
 

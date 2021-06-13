@@ -6,7 +6,9 @@ import com.project.algorithmvisualizer.data_structures.Queue;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import static com.project.algorithmvisualizer.Main.WIN_HEIGHT;
 import static com.project.algorithmvisualizer.Main.WIN_WIDTH;
@@ -16,8 +18,8 @@ public class QueueVisualizer extends JPanel {
     private Queue queue;
 
     public QueueVisualizer(){
+        setBackground(Color.gray);
         queue = new Queue();
-        queue.enQueue(new NodeObject("TESTING1"));
     }
 
     @Override
@@ -27,8 +29,11 @@ public class QueueVisualizer extends JPanel {
         int beginx=100;
         int beginy=100;
 
+        drawTitle(graphics);
+
         Iterator<NodeObject> iterator = queue.iterator();
         NodeObject prev_node;
+
         try{
             prev_node = queue.peek();
         }catch(NullPointerException exception){
@@ -36,10 +41,13 @@ public class QueueVisualizer extends JPanel {
         }
         int FRONT_X=beginx+35,FRONT_y=beginy+70;
         while(iterator.hasNext() && WIN_HEIGHT-beginy>100){
+
             graphics.setFont(new Font("Monospaced", Font.BOLD, 15));
             graphics.drawString("FRONT",FRONT_X,FRONT_y);
+
             NodeObject node = iterator.next();
             node.setGraphics(graphics);
+
             if(prev_node.equals(node)){
                 node.drawNode(beginx,beginy,NodeObject.NODE_WIDTH,NodeObject.NODE_HEIGHT);
             }else{
@@ -59,6 +67,14 @@ public class QueueVisualizer extends JPanel {
         }catch(NullPointerException exception){
 
         }
+    }
+    private void drawTitle(Graphics2D graphics){
+        Map<RenderingHints.Key, Object> renderingHints = new HashMap<>();
+        renderingHints.put(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        graphics.addRenderingHints(renderingHints);
+        graphics.setColor(Color.WHITE);
+        graphics.setFont(new Font("Monospaced", Font.BOLD, 40));
+        graphics.drawString("Queue", WIN_WIDTH/2-50, 30);
     }
 
     void drawArrow(Graphics g1, int x1, int y1, int x2, int y2) {
