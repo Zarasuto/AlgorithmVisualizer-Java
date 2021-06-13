@@ -13,6 +13,9 @@ public class NodeObject {
     private int TAIL_X;
     private int TAIL_Y;
 
+    private int POS_X;
+    private int POS_Y;
+
     private Graphics2D graphics;
 
     public NodeObject(String Name){
@@ -28,12 +31,13 @@ public class NodeObject {
         graphics.drawLine(beginx+width,beginy,beginx+width+(width/4),beginy+height);
         graphics.drawLine(beginx+width+(width/4),beginy,beginx+width,beginy+height);
 
-        //Set Coordinates for Head and Tail
+        //Set Coordinates for Head, Tail and Position
         setHeadX(beginx+width+(width/4));
         setHeadY((beginy)+(height/2));
         setTailX(beginx);
         setTailY((beginy)+(height/2));
-
+        setPOS_X(beginx);
+        setPOS_Y(beginy);
 
         //Draw String for the data
         graphics.drawString(this.name,beginx+10,beginy+25);
@@ -72,6 +76,22 @@ public class NodeObject {
 
     public void setTailY(int tailY) {
         TAIL_Y = tailY;
+    }
+
+    public int getPOS_X() {
+        return POS_X;
+    }
+
+    public void setPOS_X(int POS_X) {
+        this.POS_X = POS_X;
+    }
+
+    public int getPOS_Y() {
+        return POS_Y;
+    }
+
+    public void setPOS_Y(int POS_Y) {
+        this.POS_Y = POS_Y;
     }
 
     public String getName(){

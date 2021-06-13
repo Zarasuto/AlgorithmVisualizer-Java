@@ -50,6 +50,11 @@ public class StackVisualizer extends JPanel {
                 beginy+=100;
             }
         }
+        try{
+            graphics.drawString("REAR",prev_node.getPOS_X()+35,prev_node.getPOS_Y()+70);
+        }catch(NullPointerException exception){
+
+        }
     }
 
     void drawArrow(Graphics g1, int x1, int y1, int x2, int y2) {

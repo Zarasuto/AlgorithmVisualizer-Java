@@ -24,6 +24,7 @@ public class MainScreen extends JPanel {
     private SortAlgorithmScreen sortAlgorithmScreen;
     private TitleScreen titleScreen;
     private StackVisualizerScreen stackVisualizerScreen;
+    private QueueVisualizerScreen queueVisualizerScreen;
 
     public MainScreen(){
         setupGUI();
@@ -38,6 +39,7 @@ public class MainScreen extends JPanel {
         card.add(titleScreen,titleScreen.getScreenName());
         card.add(sortAlgorithmScreen,sortAlgorithmScreen.getScreenName());
         card.add(stackVisualizerScreen,stackVisualizerScreen.getScreenName());
+        card.add(queueVisualizerScreen,queueVisualizerScreen.getScreenName());
 
         addListeners();
         cardLayout.show(card,titleScreen.getScreenName());
@@ -47,6 +49,7 @@ public class MainScreen extends JPanel {
         titleScreen = new TitleScreen(this);
         sortAlgorithmScreen = new SortAlgorithmScreen(this);
         stackVisualizerScreen = new StackVisualizerScreen(this);
+        queueVisualizerScreen = new QueueVisualizerScreen(this);
     }
 
     /**
@@ -71,7 +74,7 @@ public class MainScreen extends JPanel {
         titleScreen.getPickQueueButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                cardLayout.show(card,queueVisualizerScreen.getScreenName());
             }
         });
     }

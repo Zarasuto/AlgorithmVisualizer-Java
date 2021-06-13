@@ -16,6 +16,10 @@ public class Queue implements Iterable<NodeObject>{
     }
 
     public void enQueue(NodeObject data){
+        if(size==42){
+            return;
+        }
+
         QueueNode temp = new QueueNode(data);
         if(rear==null){
             front=rear=temp;
