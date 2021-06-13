@@ -22,7 +22,6 @@ public class SortMenu extends JPanel {
     }
 
     private void setupGUI(){
-        SortVisualizer sortVisualizer = new SortVisualizer();
         setLayout(new FlowLayout(FlowLayout.LEFT));
         menu.setSize(MENU_WIDTH,MENU_HEIGHT);
 

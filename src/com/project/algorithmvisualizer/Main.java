@@ -14,7 +14,6 @@ public class Main {
     public static final int WIN_HEIGHT=720;
 
     private MainScreen menu;
-    private SortAlgorithmScreen sortAlgorithm;
     private JFrame window;
 
     public Main(){
