@@ -1,6 +1,5 @@
 package com.project.algorithmvisualizer.screen;
 
-import com.project.algorithmvisualizer.Main;
 import com.project.algorithmvisualizer.SortVisualizer;
 import com.project.algorithmvisualizer.sort_algorithms.sortAlgorithms;
 
@@ -16,7 +15,7 @@ import static com.project.algorithmvisualizer.Main.WIN_WIDTH;
 
 public class SortAlgorithmScreen extends Screen{
 
-    private Menu menu;
+    private SortMenu sortMenu;
     private SortVisualizer sortVisualizer;
 
     public SortAlgorithmScreen(MainScreen app){
@@ -25,42 +24,42 @@ public class SortAlgorithmScreen extends Screen{
     }
 
     private void setupGUI() {
-        menu = new Menu();
+        sortMenu = new SortMenu();
         sortVisualizer = new SortVisualizer();
         setLayout(new BorderLayout());
         add(sortVisualizer,BorderLayout.CENTER);
-        add(menu,BorderLayout.PAGE_START);
+        add(sortMenu,BorderLayout.PAGE_START);
         addListener();
     }
 
     public void addListener(){
-        menu.getArraySizePicker().addChangeListener(new ChangeListener() {
+        sortMenu.getArraySizePicker().addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                if(menu.getStartButton().isEnabled()){
-                    sortVisualizer.setBarNums(menu.getArraySizePicker().getValue());
+                if(sortMenu.getStartButton().isEnabled()){
+                    sortVisualizer.setBarNums(sortMenu.getArraySizePicker().getValue());
                     sortVisualizer.setBarArray();
                     repaint();
                 }
             }
         });
-        menu.getDelaySizePicker().addChangeListener(new ChangeListener() {
+        sortMenu.getDelaySizePicker().addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                sortVisualizer.setDelay(menu.getDelaySizePicker().getValue());
-                sortAlgorithms algorithm = menu.getAlgorithmPicker().getItemAt(menu.getAlgorithmPicker().getSelectedIndex());
-                algorithm.setDelay(menu.getDelaySizePicker().getValue());
+                sortVisualizer.setDelay(sortMenu.getDelaySizePicker().getValue());
+                sortAlgorithms algorithm = sortMenu.getAlgorithmPicker().getItemAt(sortMenu.getAlgorithmPicker().getSelectedIndex());
+                algorithm.setDelay(sortMenu.getDelaySizePicker().getValue());
                 repaint();
             }
         });
-        menu.getStartButton().addActionListener(new ActionListener() {
+        sortMenu.getStartButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 startOperation();
             }
         });
 
-        menu.getBACKButton().addActionListener(new ActionListener() {
+        sortMenu.getBACKButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 backToMenu();
@@ -85,19 +84,19 @@ public class SortAlgorithmScreen extends Screen{
         SwingWorker<Void,Void> swingWorker=new SwingWorker<Void, Void>() {
             @Override
             protected Void doInBackground() throws Exception {
-                menu.getStartButton().setEnabled(false);
-                sortAlgorithms algorithm = menu.getAlgorithmPicker().getItemAt(menu.getAlgorithmPicker().getSelectedIndex());
+                sortMenu.getStartButton().setEnabled(false);
+                sortAlgorithms algorithm = sortMenu.getAlgorithmPicker().getItemAt(sortMenu.getAlgorithmPicker().getSelectedIndex());
 
                 sortVisualizer.setName(algorithm.toString());
-                algorithm.setDelay(menu.getDelaySizePicker().getValue());
-                sortVisualizer.setDelay(menu.getDelaySizePicker().getValue());
+                algorithm.setDelay(sortMenu.getDelaySizePicker().getValue());
+                sortVisualizer.setDelay(sortMenu.getDelaySizePicker().getValue());
                 waitAndShuffle();
 
                 algorithm.runSort(sortVisualizer);
                 sortVisualizer.highlightArrays(2);
                 sortVisualizer.resetColors();
 
-                menu.getStartButton().setEnabled(true);
+                sortMenu.getStartButton().setEnabled(true);
 
                 return null;
             }
@@ -107,7 +106,7 @@ public class SortAlgorithmScreen extends Screen{
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(WIN_WIDTH, WIN_HEIGHT+menu.MENU_HEIGHT);
+        return new Dimension(WIN_WIDTH, WIN_HEIGHT+ sortMenu.MENU_HEIGHT);
     }
 
     @Override

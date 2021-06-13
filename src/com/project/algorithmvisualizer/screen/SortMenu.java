@@ -6,7 +6,7 @@ import com.project.algorithmvisualizer.sort_algorithms.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class Menu extends JPanel {
+public class SortMenu extends JPanel {
     public static final int MENU_WIDTH= 227;
     public static final int MENU_HEIGHT= 54;
 
@@ -17,7 +17,7 @@ public class Menu extends JPanel {
     private JPanel menu;
     private JButton BACKButton;
 
-    public Menu(){
+    public SortMenu(){
         setupGUI();
     }
 
