@@ -77,7 +77,7 @@ public class MainScreen extends JPanel {
     }
 
     public void switchToTitle(){
-        cardLayout.previous(card);
+        cardLayout.show(card,titleScreen.getScreenName());
     }
 
     @Override

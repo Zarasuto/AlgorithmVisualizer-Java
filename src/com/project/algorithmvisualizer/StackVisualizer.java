@@ -1,31 +1,57 @@
 package com.project.algorithmvisualizer;
 
 import com.project.algorithmvisualizer.data_structures.NodeObject;
+import com.project.algorithmvisualizer.data_structures.Stack;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
-import java.util.Stack;
+import java.util.Iterator;
 
 import static com.project.algorithmvisualizer.Main.WIN_HEIGHT;
 import static com.project.algorithmvisualizer.Main.WIN_WIDTH;
 
 public class StackVisualizer extends JPanel {
     private static final int POLY_SIZE = 4;
+    private Stack stack;
 
-    private Stack<NodeObject> stack;
     public StackVisualizer(){
+        stack = new Stack();
     }
-
     public void paintComponent(Graphics g){
         Graphics2D graphics = (Graphics2D)g;
         super.paintComponent(graphics);
-        NodeObject node1 = new NodeObject(graphics);
-        NodeObject node2 = new NodeObject(graphics);
-        node1.drawNode(50,100,NodeObject.NODE_WIDTH,NodeObject.NODE_HEIGHT);
-        node2.drawNode(250,100,NodeObject.NODE_WIDTH,NodeObject.NODE_HEIGHT);
+        int beginx=100;
+        int beginy=100;
 
-        drawArrow(g,node1.getHeadX(),node1.getHeadY(),node2.getTailX(),node1.getTailY());
+        Iterator<NodeObject> iterator = stack.iterator();
+        NodeObject prev_node;
+        try{
+            prev_node = stack.peek();
+        }catch(NullPointerException exception){
+            prev_node = null;
+        }
+        while(iterator.hasNext() && WIN_HEIGHT-beginy>100){
+            graphics.setFont(new Font("Monospaced", Font.BOLD, 15));
+            graphics.drawString("PEEK",135,170);
+            NodeObject node = iterator.next();
+            node.setGraphics(graphics);
+            if(prev_node.equals(node)){
+                node.drawNode(beginx,beginy,NodeObject.NODE_WIDTH,NodeObject.NODE_HEIGHT);
+            }else{
+                node.drawNode(beginx,beginy,NodeObject.NODE_WIDTH,NodeObject.NODE_HEIGHT);
+                drawArrow(g,prev_node.getHeadX(), prev_node.getHeadY(), node.getTailX(), node.getTailY());
+            }
+
+            prev_node=node;
+            beginx+=150;
+            if(WIN_WIDTH-beginx<170){
+                beginx=100;
+                beginy+=100;
+            }
+        }
     }
 
     void drawArrow(Graphics g1, int x1, int y1, int x2, int y2) {
@@ -47,5 +73,8 @@ public class StackVisualizer extends JPanel {
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(WIN_WIDTH, WIN_HEIGHT);
+    }
+    public Stack getStack(){
+        return stack;
     }
 }

@@ -15,8 +15,8 @@ public class NodeObject {
 
     private Graphics2D graphics;
 
-    public NodeObject(Graphics2D graphics){
-        this.graphics=graphics;
+    public NodeObject(String Name){
+        this.name = Name;
     }
     public void drawNode(int beginx,int beginy,int width, int height){
         graphics.drawRect(beginx,beginy,width,height);
@@ -33,13 +33,15 @@ public class NodeObject {
         setHeadY((beginy)+(height/2));
         setTailX(beginx);
         setTailY((beginy)+(height/2));
+
+
+        //Draw String for the data
+        graphics.drawString(this.name,beginx+10,beginy+25);
     }
 
-
-    public void setName(String name){
-        this.name = name;
+    public void setGraphics(Graphics2D graphics){
+        this.graphics=graphics;
     }
-
     public int getHeadX() {
         return HEAD_X;
     }
@@ -70,5 +72,9 @@ public class NodeObject {
 
     public void setTailY(int tailY) {
         TAIL_Y = tailY;
+    }
+
+    public String getName(){
+        return this.name;
     }
 }
