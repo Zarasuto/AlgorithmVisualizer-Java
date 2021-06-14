@@ -20,7 +20,7 @@ public class BubbleSort implements sortAlgorithms{
 
         for(int i=0;i<array.arraySize();i++){
             for(int j=0;j< array.arraySize()-i-1;j++){
-                if(array.getValue(j)>array.getValue(j+1)){
+                if(array.getValue(j).getFirstCharacterValue()>array.getValue(j+1).getFirstCharacterValue()){
                     array.swap(j,j+1,delay,true);
                 }else{
                     array.updateSingle(j,array.getValue(j),delay,true);

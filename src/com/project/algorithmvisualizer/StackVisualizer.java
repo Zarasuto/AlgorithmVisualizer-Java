@@ -1,6 +1,5 @@
 package com.project.algorithmvisualizer;
 
-import com.project.algorithmvisualizer.data_structures.NodeObject;
 import com.project.algorithmvisualizer.data_structures.Stack;
 
 import javax.swing.*;

@@ -10,12 +10,14 @@ public class SortMenu extends JPanel {
     public static final int MENU_WIDTH= 227;
     public static final int MENU_HEIGHT= 54;
 
-    private JSlider ArraySizePicker;
     private JSlider DelaySizePicker;
     private JComboBox<sortAlgorithms> AlgorithmPicker;
     private JButton startButton;
     private JPanel menu;
     private JButton BACKButton;
+    private JTextField SortInput;
+    private JButton addButton;
+    private JButton clearButton;
 
     public SortMenu(){
         setupGUI();
@@ -28,7 +30,6 @@ public class SortMenu extends JPanel {
         //background colors
         setBackground(Color.black);
         menu.setBackground(Color.black);
-        ArraySizePicker.setBackground(Color.black);
         DelaySizePicker.setBackground(Color.black);
 
         DelaySizePicker.setValue((int) sortAlgorithms.DEFAULT_DELAY);
@@ -42,9 +43,6 @@ public class SortMenu extends JPanel {
         AlgorithmPicker.addItem(new SelectionSort());
     }
 
-    public JSlider getArraySizePicker() {
-        return ArraySizePicker;
-    }
 
     public JSlider getDelaySizePicker() {
         return DelaySizePicker;
@@ -60,5 +58,17 @@ public class SortMenu extends JPanel {
 
     public JButton getBACKButton() {
         return BACKButton;
+    }
+
+    public JTextField getSortInput() {
+        return SortInput;
+    }
+
+    public JButton getAddButton() {
+        return addButton;
+    }
+
+    public JButton getClearButton() {
+        return clearButton;
     }
 }

@@ -1,6 +1,8 @@
 package com.project.algorithmvisualizer.data_structures;
 
 
+import com.project.algorithmvisualizer.NodeObject;
+
 import java.util.Iterator;
 
 public class Stack implements Iterable{

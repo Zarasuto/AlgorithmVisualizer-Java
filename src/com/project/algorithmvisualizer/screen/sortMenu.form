@@ -7,31 +7,6 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="5f029" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <background color="-16777216"/>
-          <foreground color="-1"/>
-          <text value="Size"/>
-        </properties>
-      </component>
-      <component id="f8c78" class="javax.swing.JSlider" binding="ArraySizePicker">
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <extent value="0"/>
-          <foreground color="-1"/>
-          <maximum value="20"/>
-          <minimum value="1"/>
-          <paintLabels value="false"/>
-          <paintTicks value="false"/>
-        </properties>
-      </component>
       <component id="b33fa" class="javax.swing.JLabel">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -43,22 +18,6 @@
           <text value="Delay"/>
         </properties>
       </component>
-      <component id="82ea3" class="javax.swing.JComboBox" binding="AlgorithmPicker">
-        <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="f8c5b" class="javax.swing.JButton" binding="startButton">
-        <constraints>
-          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text value="START"/>
-        </properties>
-      </component>
       <component id="c390e" class="javax.swing.JSlider" binding="DelaySizePicker">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
@@ -67,20 +26,67 @@
         <properties>
           <enabled value="true"/>
           <foreground color="-1"/>
-          <maximum value="120"/>
+          <majorTickSpacing value="50"/>
+          <maximum value="1000"/>
           <minimum value="1"/>
+          <minorTickSpacing value="10"/>
           <paintLabels value="false"/>
-          <paintTicks value="false"/>
+          <paintTicks value="true"/>
           <paintTrack value="true"/>
         </properties>
       </component>
       <component id="6bf7d" class="javax.swing.JButton" binding="BACKButton" default-binding="true">
         <constraints>
-          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text value="BACK"/>
+        </properties>
+      </component>
+      <component id="16ee2" class="javax.swing.JButton" binding="addButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Add"/>
+        </properties>
+      </component>
+      <component id="6cbb6" class="javax.swing.JTextField" binding="SortInput">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <columns value="10"/>
+        </properties>
+      </component>
+      <component id="f8c5b" class="javax.swing.JButton" binding="startButton">
+        <constraints>
+          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="START"/>
+        </properties>
+      </component>
+      <component id="82ea3" class="javax.swing.JComboBox" binding="AlgorithmPicker">
+        <constraints>
+          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="5232" class="javax.swing.JButton" binding="clearButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Clear"/>
         </properties>
       </component>
     </children>

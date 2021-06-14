@@ -1,5 +1,6 @@
 package com.project.algorithmvisualizer.screen;
 
+import com.project.algorithmvisualizer.NodeObject;
 import com.project.algorithmvisualizer.SortVisualizer;
 import com.project.algorithmvisualizer.sort_algorithms.sortAlgorithms;
 
@@ -33,16 +34,6 @@ public class SortAlgorithmScreen extends Screen{
     }
 
     public void addListener(){
-        sortMenu.getArraySizePicker().addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                if(sortMenu.getStartButton().isEnabled()){
-                    sortVisualizer.setBarNums(sortMenu.getArraySizePicker().getValue());
-                    sortVisualizer.setBarArray();
-                    repaint();
-                }
-            }
-        });
         sortMenu.getDelaySizePicker().addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -65,17 +56,22 @@ public class SortAlgorithmScreen extends Screen{
                 backToMenu();
             }
         });
-    }
 
-    public void waitAndShuffle(){
-        try {
-            Thread.sleep(2000);
-            sortVisualizer.shuffle();
-            sortVisualizer.resetColors();
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        sortMenu.getAddButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sortVisualizer.addItem(new NodeObject(sortMenu.getSortInput().getText()));
+                sortMenu.getSortInput().setName("");
+                repaint();
+            }
+        });
+        sortMenu.getClearButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sortVisualizer.setArray(42);
+                repaint();
+            }
+        });
     }
 
 
@@ -85,18 +81,21 @@ public class SortAlgorithmScreen extends Screen{
             @Override
             protected Void doInBackground() throws Exception {
                 sortMenu.getStartButton().setEnabled(false);
+                sortMenu.getClearButton().setEnabled(false);
+                sortMenu.getAddButton().setEnabled(false);
+
                 sortAlgorithms algorithm = sortMenu.getAlgorithmPicker().getItemAt(sortMenu.getAlgorithmPicker().getSelectedIndex());
 
                 sortVisualizer.setName(algorithm.toString());
                 algorithm.setDelay(sortMenu.getDelaySizePicker().getValue());
                 sortVisualizer.setDelay(sortMenu.getDelaySizePicker().getValue());
-                waitAndShuffle();
 
                 algorithm.runSort(sortVisualizer);
-                sortVisualizer.highlightArrays(2);
                 sortVisualizer.resetColors();
 
                 sortMenu.getStartButton().setEnabled(true);
+                sortMenu.getClearButton().setEnabled(true);
+                sortMenu.getAddButton().setEnabled(true);
 
                 return null;
             }

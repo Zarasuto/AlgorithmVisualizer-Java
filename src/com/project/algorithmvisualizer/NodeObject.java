@@ -1,4 +1,4 @@
-package com.project.algorithmvisualizer.data_structures;
+package com.project.algorithmvisualizer;
 
 import java.awt.*;
 
@@ -41,6 +41,11 @@ public class NodeObject {
 
         //Draw String for the data
         graphics.drawString(this.name,beginx+10,beginy+25);
+    }
+
+    public void highlightNode(int beginx,int beginy,int width, int height){
+        graphics.setColor(Color.blue);
+        graphics.fillRect(beginx,beginy,width,height);
     }
 
     public void setGraphics(Graphics2D graphics){
@@ -96,5 +101,12 @@ public class NodeObject {
 
     public String getName(){
         return this.name;
+    }
+
+    public int getFirstCharacterValue(){
+        int value=0;
+        for(int i=0;i<name.length();i++)
+            value+=name.charAt(i);
+        return value;
     }
 }

@@ -17,7 +17,7 @@ public class SelectionSort implements sortAlgorithms{
         for(int i=0;i<array.arraySize();i++){
             int min_index=i;
             for(int j=i+1;j<array.arraySize();j++){
-                if(array.getValue(j)<array.getValue(min_index)){
+                if(array.getValue(j).getFirstCharacterValue()<array.getValue(min_index).getFirstCharacterValue()){
                     min_index=j;
                 }
                 array.updateSingle(j,array.getValue(j),delay,true);

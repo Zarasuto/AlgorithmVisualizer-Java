@@ -3,7 +3,7 @@ package com.project.algorithmvisualizer.screen;
 
 
 import com.project.algorithmvisualizer.StackVisualizer;
-import com.project.algorithmvisualizer.data_structures.NodeObject;
+import com.project.algorithmvisualizer.NodeObject;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

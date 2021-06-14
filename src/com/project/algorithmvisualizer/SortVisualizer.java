@@ -1,5 +1,7 @@
 package com.project.algorithmvisualizer;
 
+import org.w3c.dom.Node;
+
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,29 +17,34 @@ public class SortVisualizer extends JPanel{
     private String algorithmName="";
     private long algorithm_delay=0;
 
-    private static final int DEFAULT_BAR_WIDTH=5;
-    private static final int DEFAULT_BAR_NUMS = WIN_WIDTH/DEFAULT_BAR_WIDTH;
-    private final double MAX_HEIGHT=WIN_HEIGHT*0.8;
 
-    private static int BAR_WIDTH=DEFAULT_BAR_WIDTH;
-    private static int BAR_NUMS=DEFAULT_BAR_NUMS;
+    private static final int DEFAULT_ARRAY_SIZE=42;
 
-    private static int[] arr;
+    private int ARRAY_SIZE=DEFAULT_ARRAY_SIZE;
+
+    private NodeObject[] arr;
     private int[] barColor;
 
     public SortVisualizer(){
         setBackground(Color.black);
-        setBarArray();
-    }
-    public void setBarArray(){
-        arr = new int[BAR_NUMS];
-        barColor = new int[BAR_NUMS];
-        for(int i=0;i<arr.length;i++){
-            arr[i]=i+1;
+        setArray(ARRAY_SIZE);
+        for(int i=0;i<ARRAY_SIZE;i++){
             barColor[i]=0;
         }
     }
+    public void setArray(int size){
+        arr = new NodeObject[size];
+        barColor=new int[size];
+    }
+    public void addItem(NodeObject item){
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==null){
+                arr[i]=item;
+                return;
+            }
+        }
 
+    }
     //-------------------------------------BAR OPERATIONS-----------------------------------------
     private void finaliseUpdate(long millisecondDelay, boolean isStep) {
         repaint();
@@ -51,19 +58,19 @@ public class SortVisualizer extends JPanel{
     }
 
     public void swap(int index1, int index2,long millisecondDelay, boolean isStep){
-        int temp = arr[index1];
+        NodeObject temp = arr[index1];
         arr[index1]=arr[index2];
         arr[index2]=temp;
 
-        barColor[index1]=-50;
-        barColor[index2]=-50;
+        barColor[index1]=10;
+        barColor[index2]=10;
 
         finaliseUpdate(millisecondDelay,isStep);
     }
-    public void updateSingle(int index, int value, long millisecondDelay, boolean isStep){
+    public void updateSingle(int index, NodeObject value, long millisecondDelay, boolean isStep){
         arr[index]=value;
 
-        barColor[index]=100;
+        barColor[index]=10;
 
         finaliseUpdate(millisecondDelay, isStep);
     }
@@ -91,36 +98,34 @@ public class SortVisualizer extends JPanel{
         graphics.setFont(new Font("Monospaced", Font.BOLD, 20));
         graphics.drawString(" Current algorithm: " + algorithmName, 10, 30);
         graphics.drawString("Current step delay: " + algorithm_delay + "ms", 10, 50);
-        graphics.drawString("       Array Size : " + BAR_NUMS, 10, 70);
+        graphics.drawString("       Array Size : " + ARRAY_SIZE, 10, 70);
         graphics.drawString("       Comparisons: " + comparisons, 10, 90);
 
-        drawBars(graphics);
+        drawNode(graphics);
     }
-    private void drawBars(Graphics2D graphics){
-        for(int i=0;i<BAR_NUMS;i++){
 
-            int barheight=(int)Math.ceil(arr[i]*(MAX_HEIGHT/BAR_NUMS));
-            int xbegin =((BAR_WIDTH)*(i));
-            int ybegin= WIN_HEIGHT-barheight;
-            /**
-             * If the barColor is recently changed, it will turn green. for every iteration, it will decrease by 5
-             * then, after barcolor is below 190, it will turn red, but it will still decrease by 5 until it became zero and
-             * turn to white
-             */
-            if(barColor[i]>0){
-                int val=barColor[i]*2;
-                graphics.setColor(new Color(255,255-val,255-val));
-                barColor[i]-=5;
-            }else if(barColor[i]<0){
-                graphics.setColor(new Color(255,0,0));
-                barColor[i]+=5;
-            }else{
-                graphics.setColor(new Color(255,255,255));
+    private void drawNode(Graphics2D graphics){
+        int beginx=100;
+        int beginy=100;
+        for(int i=0;i<arr.length;i++){
+            try{
+                arr[i].setGraphics(graphics);
+                if(barColor[i]>0){
+                    arr[i].highlightNode(beginx,beginy,NodeObject.NODE_WIDTH,NodeObject.NODE_HEIGHT);
+                    barColor[i]-=10;
+                }
+                graphics.setColor(Color.white);
+                arr[i].drawNode(beginx,beginy,NodeObject.NODE_WIDTH,NodeObject.NODE_HEIGHT);
+                beginx+=150;
+                if(WIN_WIDTH-beginx<170){
+                    beginx=100;
+                    beginy+=100;
+                }
+            }catch(NullPointerException exp){
+
             }
-            graphics.fillRect(xbegin,ybegin,BAR_WIDTH,barheight);
         }
     }
-
 
     @Override
     public Dimension getPreferredSize() {
@@ -130,24 +135,27 @@ public class SortVisualizer extends JPanel{
     //------------------------------------------------END-------------------------------------------------
 
     //------------------------------------------UTILITIES----------------------------------------
-    public void resetColors() {
-        for (int i = 0; i < BAR_NUMS; i++) {
-            barColor[i] = 0;
-        }
-        repaint();
-    }
+
     public int arraySize() {
-        return arr.length;
+        int size=0;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]!=null){
+                size++;
+            }
+        }
+        return size;
     }
 
-    public int getValue(int index) {
+    public NodeObject getValue(int index) {
         return arr[index];
     }
 
-    public void highlightArrays(long millisecondDelay){
-        for(int i=0;i<BAR_NUMS;i++){
-            updateSingle(i, getValue(i), 5, false);
+    public void resetColors() {
+        for (int i = 0; i < ARRAY_SIZE; i++) {
+            barColor[i] = 0;
         }
+        comparisons=0;
+        repaint();
     }
 
     @Override
@@ -155,8 +163,8 @@ public class SortVisualizer extends JPanel{
         this.algorithmName = algorithmName;
     }
     public void setDelay(long algorithm_delay){ this.algorithm_delay=algorithm_delay;}
-    public void setBarNums(int BAR_WIDTH){
-        this.BAR_WIDTH=BAR_WIDTH;
-        this.BAR_NUMS=WIN_WIDTH/this.BAR_WIDTH;
+
+    public void setSize(int size){
+        this.ARRAY_SIZE=size;
     }
 }

@@ -1,5 +1,6 @@
 package com.project.algorithmvisualizer.sort_algorithms;
 
+import com.project.algorithmvisualizer.NodeObject;
 import com.project.algorithmvisualizer.SortVisualizer;
 
 
@@ -36,8 +37,8 @@ public class MergeSort implements sortAlgorithms{
         int leftsize=middleindex-leftindex+1;
         int rightsize=rightindex-middleindex;
 
-        int[] left_temp_array= new int[leftsize];
-        int[] right_temp_array = new int[rightsize];
+        NodeObject[] left_temp_array= new NodeObject[leftsize];
+        NodeObject[] right_temp_array = new NodeObject[rightsize];
 
         for(int i=0;i<leftsize;i++){
             left_temp_array[i]=array.getValue(leftindex+i);
@@ -49,7 +50,7 @@ public class MergeSort implements sortAlgorithms{
         int i=0,j=0,k=leftindex;
 
         while(i<leftsize && j<rightsize){
-            if(left_temp_array[i]<=right_temp_array[j]){
+            if(left_temp_array[i].getFirstCharacterValue()<=right_temp_array[j].getFirstCharacterValue()){
                 array.updateSingle(k,left_temp_array[i],delay,true);
                 i++;
             }else{
