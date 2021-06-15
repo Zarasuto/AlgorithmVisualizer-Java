@@ -18,6 +18,7 @@ public class SortMenu extends JPanel {
     private JTextField SortInput;
     private JButton addButton;
     private JButton clearButton;
+    private JButton shuffleButton;
 
     public SortMenu(){
         setupGUI();
@@ -70,5 +71,9 @@ public class SortMenu extends JPanel {
 
     public JButton getClearButton() {
         return clearButton;
+    }
+
+    public JButton getShuffleButton() {
+        return shuffleButton;
     }
 }

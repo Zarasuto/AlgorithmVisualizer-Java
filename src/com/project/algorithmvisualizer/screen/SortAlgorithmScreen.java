@@ -72,6 +72,13 @@ public class SortAlgorithmScreen extends Screen{
                 repaint();
             }
         });
+        sortMenu.getShuffleButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sortVisualizer.shuffle();
+                sortVisualizer.resetColors();
+            }
+        });
     }
 
 
@@ -83,6 +90,7 @@ public class SortAlgorithmScreen extends Screen{
                 sortMenu.getStartButton().setEnabled(false);
                 sortMenu.getClearButton().setEnabled(false);
                 sortMenu.getAddButton().setEnabled(false);
+                sortMenu.getShuffleButton().setEnabled(false);
 
                 sortAlgorithms algorithm = sortMenu.getAlgorithmPicker().getItemAt(sortMenu.getAlgorithmPicker().getSelectedIndex());
 
@@ -90,12 +98,14 @@ public class SortAlgorithmScreen extends Screen{
                 algorithm.setDelay(sortMenu.getDelaySizePicker().getValue());
                 sortVisualizer.setDelay(sortMenu.getDelaySizePicker().getValue());
 
+
                 algorithm.runSort(sortVisualizer);
                 sortVisualizer.resetColors();
 
                 sortMenu.getStartButton().setEnabled(true);
                 sortMenu.getClearButton().setEnabled(true);
                 sortMenu.getAddButton().setEnabled(true);
+                sortMenu.getShuffleButton().setEnabled(true);
 
                 return null;
             }

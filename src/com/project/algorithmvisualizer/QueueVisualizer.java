@@ -17,7 +17,7 @@ public class QueueVisualizer extends JPanel {
     private Queue queue;
 
     public QueueVisualizer(){
-        setBackground(Color.gray);
+        setBackground(Color.black);
         queue = new Queue();
     }
 

@@ -105,8 +105,13 @@ public class NodeObject {
 
     public int getFirstCharacterValue(){
         int value=0;
-        for(int i=0;i<name.length();i++)
-            value+=name.charAt(i);
+        try{
+            value=Integer.parseInt(name);
+        }catch(NumberFormatException exp){
+            for(int i=0;i<name.length();i++){
+                value+=name.charAt(i);
+            }
+        }
         return value;
     }
 }

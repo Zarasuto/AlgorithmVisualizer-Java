@@ -154,7 +154,6 @@ public class SortVisualizer extends JPanel{
         for (int i = 0; i < ARRAY_SIZE; i++) {
             barColor[i] = 0;
         }
-        comparisons=0;
         repaint();
     }
 

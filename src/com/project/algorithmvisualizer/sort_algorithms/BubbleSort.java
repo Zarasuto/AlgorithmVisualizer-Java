@@ -18,7 +18,7 @@ public class BubbleSort implements sortAlgorithms{
     @Override
     public void runSort(SortVisualizer array) {
 
-        for(int i=0;i<array.arraySize();i++){
+        RESET: for(int i=0;i<array.arraySize();i++){
             for(int j=0;j< array.arraySize()-i-1;j++){
                 if(array.getValue(j).getFirstCharacterValue()>array.getValue(j+1).getFirstCharacterValue()){
                     array.swap(j,j+1,delay,true);

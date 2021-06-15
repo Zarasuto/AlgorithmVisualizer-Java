@@ -17,7 +17,7 @@ public class StackVisualizer extends JPanel {
     private Stack stack;
 
     public StackVisualizer(){
-        setBackground(Color.gray);
+        setBackground(Color.black);
         stack = new Stack();
     }
     public void paintComponent(Graphics g){

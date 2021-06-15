@@ -17,10 +17,10 @@ public class StackMenu extends JPanel {
         setupGUI();
     }
     private void setupGUI(){
-        setBackground(Color.gray);
+        setBackground(Color.black);
         setLayout(new FlowLayout(FlowLayout.LEFT));
         menu.setSize(MENU_WIDTH,MENU_HEIGHT);
-        menu.setBackground(Color.gray);
+        menu.setBackground(Color.black);
 
         add(menu);
     }
